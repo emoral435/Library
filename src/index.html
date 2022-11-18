@@ -7,10 +7,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="icon" type="image/x-icon" href="/src/favicon.png">
+    <link rel="stylesheet" href="/dist/output.css">
 </head>
 
-<body>
+<body class="font-['Verdana']">
+    <div class="grid grid-cols-[3fr_7fr] h-[100vh] w-[100%]">
+        <nav class="bg-gradient-to-b from-[#f18a94] to-[#f8c6cb] grid grid-rows-[4fr_7fr_1fr]">
+            <div class="flex items-center justify-center">
+                <div class="font-['American_Typewriter'] text-5xl mx-8 mt-8">The Perfect Library, made for you</div>
+                <img src="./—Pngtree—pink knowledge book illustration_4593064.png" alt="stacked books"
+                    class="w-20 h-20 mr-20">
+            </div>
+            <form action="">
+                <div
+                    class="flex flex-col gap-10 justify-start items-start ml-12 h-full w-full font-['American_Typewriter']">
+                    <div class="flex flex-col">
+                        <label for="title">Title</label>
+                        <input type="text" id="title">
+                    </div>
+                    <div class="flex flex-col">
+                        <label for="author">Author</label>
+                        <input type="text" id="author">
+                    </div>
+                    <div class="flex flex-col">
+                        <label for="pages">Number of Pages</label>
+                        <input type="number" id="pages">
+                    </div>
+                    <div class="flex">
+                        <input type="radio" id="finished">
+                        <label for="finished">Have you finished the book?</label>
+                    </div>
+                    <button type="button" id="add"
+                        class="text-white text-3xl bg-[#039659] hover:bg-[#1a704c] rounded-none px-4 py-4 shadow-lg">Add
+                        Book</button>
+                </div>
+            </form>
+            <div class="flex justify-center items-center text-xl font-['Stencil_Std']">
+                <div>Curated By&nbsp;</div>
+                <a href="https://github.com/emoral435" class="hover:text-[#f18a94]">emoral435</a>
+            </div>
+        </nav>
+        <main class="grid grid-cols-[1fr] grid-rows-[2fr_10fr] bg-slate-200">
+            <header class="flex justify-center items-center gap-28 text-xl shadow-lg">
+                <div id="read">READ: 0</div>
+                <div id="completed">COMPLETED: 0</div>
+                <div id="total">TOTAL: 0</div>
+                <button type="button" id="delete"
+                    class="text-white bg-gradient-to-r bg-purple-600 hover:bg-purple-800 rounded-none px-4 py-4 shadow-lg">DELETE
+                    ALL</button>
+            </header>
+            <div>
 
+            </div>
+        </main>
+    </div>
+    <script src="./app.js"></script>
 </body>
 
 </html>
