@@ -18,33 +18,36 @@
                 <img src="./—Pngtree—pink knowledge book illustration_4593064.png" alt="stacked books"
                     class="w-20 h-20 mr-20">
             </div>
-            <form action="">
+            <form action="" id="library">
                 <div
                     class="flex flex-col gap-10 justify-start items-start ml-12 h-full w-full font-['American_Typewriter']">
-                    <div class="flex flex-col">
+                    <div class="flex flex-col mt-8">
                         <label for="title">Title</label>
-                        <input type="text" id="title">
+                        <input type="text" id="title" title="Please input the book that you want to have saved!!"
+                            required>
                     </div>
                     <div class="flex flex-col">
                         <label for="author">Author</label>
-                        <input type="text" id="author">
+                        <input type="text" id="author" title="Please input the author that you want to have saved!!"
+                            required>
                     </div>
                     <div class="flex flex-col">
                         <label for="pages">Number of Pages</label>
-                        <input type="number" id="pages">
+                        <input type="number" id="pages"
+                            title="Please type the number of pages that you want to have saved!!" required>
                     </div>
-                    <div class="flex">
-                        <input type="radio" id="finished">
-                        <label for="finished">Have you finished the book?</label>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="finished">
+                        <label for="finished" class="ml-2">Have you finished the book?</label>
                     </div>
-                    <button type="button" id="add"
+                    <button type="submit" id="add" form="library"
                         class="text-white text-3xl bg-[#039659] hover:bg-[#1a704c] rounded-none px-4 py-4 shadow-lg">Add
                         Book</button>
                 </div>
             </form>
             <div class="flex justify-center items-center text-xl font-['Stencil_Std']">
-                <div>Curated By&nbsp;</div>
-                <a href="https://github.com/emoral435" class="hover:text-[#f18a94]">emoral435</a>
+                <div>🌙 Curated By&nbsp;</div>
+                <a href="https://github.com/emoral435" class="hover:text-[#f18a94]">emoral435 🌙</a>
             </div>
         </nav>
         <main class="grid grid-cols-[1fr] grid-rows-[2fr_10fr] bg-slate-200">
@@ -53,11 +56,12 @@
                 <div id="completed">COMPLETED: 0</div>
                 <div id="total">TOTAL: 0</div>
                 <button type="button" id="delete"
-                    class="text-white bg-gradient-to-r bg-purple-600 hover:bg-purple-800 rounded-none px-4 py-4 shadow-lg">DELETE
-                    ALL</button>
+                    class="text-white text-3xl bg-[#039659] hover:bg-[#1a704c] rounded-none px-4 py-4 shadow-lg">Delete
+                    All</button>
             </header>
-            <div>
-
+            <div class="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-6 m-6" id="bookset">
+                <div class="bg-white rounded-lg shadow-md h-[15rem]">test</div>
+                <div class="bg-white rounded-lg shadow-md h-[15rem]">test</div>
             </div>
         </main>
     </div>
