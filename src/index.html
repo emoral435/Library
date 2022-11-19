@@ -41,7 +41,8 @@
                         <label for="finished" class="ml-2">Have you finished the book?</label>
                     </div>
                     <button type="submit" id="add" form="library"
-                        class="text-white text-3xl bg-[#039659] hover:bg-[#1a704c] rounded-none px-4 py-4 shadow-lg">Add
+                        class="text-white text-3xl bg-[#039659] hover:bg-[#1a704c] rounded-none px-4 py-4 shadow-lg"
+                        onclick="addBook()">Add
                         Book</button>
                 </div>
             </form>
@@ -50,13 +51,14 @@
                 <a href="https://github.com/emoral435" class="hover:text-[#f18a94]">emoral435 🌙</a>
             </div>
         </nav>
-        <main class="grid grid-cols-[1fr] grid-rows-[2fr_10fr] bg-slate-200">
+        <main class="grid grid-cols-[1fr] grid-rows-[2fr_10fr] bg-gradient-to-b from-[#039659] to-[#1a704c]">
             <header class="flex justify-center items-center gap-28 text-xl shadow-lg">
                 <div id="read">READ: 0</div>
                 <div id="completed">COMPLETED: 0</div>
                 <div id="total">TOTAL: 0</div>
                 <button type="button" id="delete"
-                    class="text-white text-3xl bg-[#039659] hover:bg-[#1a704c] rounded-none px-4 py-4 shadow-lg">Delete
+                    class="text-white text-3xl bg-[#039659] hover:bg-[#1a704c] rounded-none px-4 py-4 shadow-lg"
+                    onclick="deleteButton()">Delete
                     All</button>
             </header>
             <div class="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-6 m-6" id="bookshelf">
