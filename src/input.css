@@ -6,6 +6,8 @@ input {
     background-color: #ffc1cc;
     border-width: 1px;
     border-color: black;
+    width: 19.5rem;
+    height: 2em;
 }
 
 input:focus {
@@ -60,14 +62,59 @@ input:checked+.slider:before {
 
 .parent {
     background-color: #fffdd1;
-    border-radius: .5rem;
+    /* border-radius: .5rem; */
     display: grid;
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     align-items: center;
     justify-content: center;
     font-size: 1.25rem;
     line-height: 1.75rem;
     padding: 1rem;
     font-family: 'American Typewriter';
-    height: 15rem;
+    height: 17rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.remove {
+    color: white;
+    background-color: #039659;
+    border-radius: none;
+    padding: .25rem .5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.remove:hover {
+    background-color: #1a704c;
+}
+
+.toCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.finished {
+    color: white;
+    background-color: #008CBA;
+    ;
+    border-radius: none;
+    padding: .25rem .5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.finished:hover {
+    background-color: #006f94;
+    ;
+}
+
+.unfinished {
+    color: white;
+    background-color: #f44336;
+    border-radius: none;
+    padding: .25rem .5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.unfinished:hover {
+    background-color: #b53127;
 }
