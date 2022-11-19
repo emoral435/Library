@@ -1,14 +1,25 @@
+// these have the declarations that are used everywhere throughout the codebase, so it useful to see them all here at the top
+
 const myLibrary = []; // this is the declaration for the list that the addBook function loops through to print to the screen
-let bookshelf = document.querySelector('#bookshelf'); // this is the area where we put the book in the bookshelf
+const bookshelf = document.querySelector('#bookshelf'); // this is the area where we put the book in the bookshelf
+const form = document.querySelector('#library')
+const title = document.getElementById("title")
+const author = document.getElementById("author")
+const pages = document.getElementById("pages")
+const numRead = document.getElementById("read")
+const numCompleted = document.getElementById("completed")
+const numTotal = document.getElementById("total")
+const addButton = document.getElementById("add")
+let totalBooks = 0
+let readTotal = 0
+let compTotal = 0
+
+// FUNCTIONS
 
 function Book(name, author, pages) { // this is an object constructor that makes an object with name, author, pages and checked
     this.name = name
     this.author = author
     this.pages = pages
-}
-
-function addBook() {
-    console.log('this part is at least working')
 }
 
 // Book.prototype.read = () => {
@@ -24,9 +35,9 @@ function addBookToBookshelf() { // this, when called, will add each book object 
         const button = document.createElement("button")
         button.classList.add(`text-white bg-[#039659] hover:bg-[#1a704c] rounded-none px-2 py-3 shadow-md remove`)
         button.textContent = `Delete Book`
-        nameDiv.textContent = book.name; authorDiv.textContent = book.author; pagesDiv.textContent = book.pages;
+        nameDiv.textContent = toString(book.name); authorDiv.textContent = toString(book.author); pagesDiv.textContent = toString(book.pages);
         parentDiv.classList.add(`bg-white rounded-lg shadow-md h-[15rem] grid grid-rows-[repeat(5,1fr)] items-center justify-center text-xl font-['American_Typewriter'] m-4`)
-        parentDiv.appendChild(nameDiv, authorDiv, pagesDiv, button, makeCheckmark(book.checked))
+        parentDiv.appendChild(nameDiv, authorDiv, pagesDiv, button)
         bookshelf.appendChild(parentDiv)
     })
 }
@@ -44,7 +55,11 @@ function removeChildNodes(parent) { // this removes all child nodes from a paren
 function deleteButton() { // this is the function call to the corresponding delete all button you can see on the DOM
     deleteBooks()
     removeChildNodes(bookshelf)
+    totalBooks = 0
+    numTotal.textContent = `TOTAL: ${totalBooks}`
 }
+
+// MAIN
 
 let removeNode = document.querySelectorAll('.remove') // this set ups so that every button added to the DOM can be removed
 removeNode.forEach( node => {
@@ -52,6 +67,20 @@ removeNode.forEach( node => {
         node.parentNode.removeChild(node);
     })
 })
+
+addButton.addEventListener('click', (event) => {
+    event.preventDefault()
+    if (form.reportValidity()) {
+        console.log("YOU CLICKED IT! AND ITS STAYING!")
+        totalBooks += 1
+        numTotal.textContent  = `TOTAL: ${totalBooks}`
+    }
+})
+
+
+
+
+
 
 function makeCheckmark(isChecked) { // this creates an instance of a checkmark that we can use to put into every bookshelf item
     const myLabel = document.createElement('label')
