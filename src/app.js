@@ -27,19 +27,21 @@ function Book(name, author, pages) { // this is an object constructor that makes
 // }
 
 function addBookToBookshelf() { // this, when called, will add each book object in the myLibrary array to the DOM, with a style and a checkbox to change whether the reader read the book or not
-    myLibrary.forEach( book => {
-        const parentDiv = document.createElement("div")
-        const nameDiv = document.createElement("div")
-        const authorDiv = document.createElement("div")
-        const pagesDiv = document.createElement("div")
-        const button = document.createElement("button")
-        button.classList.add(`text-white bg-[#039659] hover:bg-[#1a704c] rounded-none px-2 py-3 shadow-md remove`)
-        button.textContent = `Delete Book`
-        nameDiv.textContent = toString(book.name); authorDiv.textContent = toString(book.author); pagesDiv.textContent = toString(book.pages);
-        parentDiv.classList.add(`bg-white rounded-lg shadow-md h-[15rem] grid grid-rows-[repeat(5,1fr)] items-center justify-center text-xl font-['American_Typewriter'] m-4`)
-        parentDiv.appendChild(nameDiv, authorDiv, pagesDiv, button)
-        bookshelf.appendChild(parentDiv)
-    })
+    const parentDiv = document.createElement("div")
+    const nameDiv = document.createElement("div")
+    const authorDiv = document.createElement("div")
+    const pagesDiv = document.createElement("div")
+    const button = document.createElement("button")
+    totalBooks += 1
+    numTotal.textContent  = `TOTAL: ${totalBooks}`
+    button.classList.add('remove')
+    parentDiv.classList.add(`parent`)
+    button.textContent = `Delete Book`
+    nameDiv.textContent = `${myLibrary[myLibrary.length - 1].name}`
+    authorDiv.textContent = `${myLibrary[myLibrary.length - 1].author}`
+    pagesDiv.textContent = `${myLibrary[myLibrary.length - 1].pages}`
+    parentDiv.append(nameDiv, authorDiv, pagesDiv, button)
+    bookshelf.append(parentDiv)
 }
 
 function deleteBooks() { // this function deletes all books in the myLibrary array
@@ -71,27 +73,11 @@ removeNode.forEach( node => {
 addButton.addEventListener('click', (event) => {
     event.preventDefault()
     if (form.reportValidity()) {
-        console.log("YOU CLICKED IT! AND ITS STAYING!")
-        totalBooks += 1
-        numTotal.textContent  = `TOTAL: ${totalBooks}`
+        let addedBook = new Book(title.value, author.value, pages.value)
+        myLibrary.push(addedBook)
+        title.value = ''
+        author.value = ''
+        pages.value = ''
+        addBookToBookshelf()
     }
 })
-
-
-
-
-
-
-function makeCheckmark(isChecked) { // this creates an instance of a checkmark that we can use to put into every bookshelf item
-    const myLabel = document.createElement('label')
-    const checkbox = document.createElement('input')
-    const mySpan = document.createElement('span')
-    myLabel.appendChild(checkbox, mySpan)
-    mySpan.classList.add('slider')
-    myLabel.classList.add('switch')
-    checkbox.type = 'checkbox'
-    checkbox.name = 'check{$fruits.length}'
-    checkbox.id = 'check{$fruits.length}_id'
-    checkbox.value = isChecked
-    return myLabel
-}
