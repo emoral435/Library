@@ -23,7 +23,7 @@ function Book(name, author, pages) { // this is an object constructor that makes
     this.readStatus = this.read()
 }
 
-Book.prototype.read = () => {
+Book.prototype.read = () => { // this is so that every book object doesnt make the same function over and over again. it returns whether the checkmark is clicked or not at the time of the input
     let status = document.querySelector('#finished')
     if (status.checked) {
         compTotal += 1
@@ -70,6 +70,9 @@ function addBookToBookshelf() { // this, when called, will add each book object 
 }
 
 function deleteBooks(index, number) { // this function deletes all books in the myLibrary array
+    for (let i = index; i <= (index + number); i++) {
+        delete mylibrary[i]
+    }
     myLibrary.splice(index, number)
 }
 
@@ -88,7 +91,7 @@ function deleteButton() { // this is the function call to the corresponding dele
     numCompleted.textContent = `Completed: ${compTotal}`
 }
 
-function listenToggle() {
+function listenToggle() { // this function makes sure that every button that shows unfinished or finished can be toggled to alternate
     let toggleButton = document.querySelectorAll('.toggle')
     toggleButton.forEach( btn => {
         let nbtn = btn.cloneNode(true)
@@ -117,7 +120,7 @@ function listenToggle() {
     })
 }
 
-function listenDelete() {
+function listenDelete() { // this adds an event handler for every time the user wants to delete an individual book from their bookshelf
     let remove = document.querySelectorAll('.remove')
     remove.forEach( btn => {
         let nbtn = btn.cloneNode(true)
@@ -142,7 +145,7 @@ function listenDelete() {
     })
 }
 
-function updateDataset(number) {
+function updateDataset(number) { // this just goes through the other books on the bookshelf and updates their relationship with the index of their book in myLibrary array
     let remove = document.querySelectorAll('.remove')
     remove.forEach( btn => {
         console.log('this worked')
@@ -156,7 +159,7 @@ function updateDataset(number) {
 
 // MAIN
 
-addButton.addEventListener('click', (event) => {
+addButton.addEventListener('click', (event) => { // this is the main event handler for when the user submits their inputs !!
     event.preventDefault()
     if (form.reportValidity()) {
         let addedBook = new Book(title.value, author.value, pages.value)
