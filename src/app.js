@@ -95,16 +95,23 @@ function listenToggle() {
         btn.parentNode.replaceChild(nbtn, btn)
         nbtn.addEventListener('click', () => {
             let nextButton = nbtn.nextElementSibling;
-            console.log(nextButton)
             nbtn.classList.toggle('unfinished')
             nbtn.classList.toggle('finished')
             let index = parseInt(nextButton.dataset.index)
             if (myLibrary[index].readStatus) {
                 nbtn.textContent = `Unfinished`
                 myLibrary[index].readStatus = false
+                compTotal -= 1
+                readTotal += 1
+                numRead.textContent = `Read: ${readTotal}`
+                numCompleted.textContent = `Completed: ${compTotal}`
             } else {
                 nbtn.textContent = `Finished`
                 myLibrary[index].readStatus = true
+                compTotal += 1
+                readTotal -= 1
+                numRead.textContent = `Read: ${readTotal}`
+                numCompleted.textContent = `Completed: ${compTotal}`
             }
         })
     })
@@ -113,8 +120,10 @@ function listenToggle() {
 function listenDelete() {
     let remove = document.querySelectorAll('.remove')
     remove.forEach( btn => {
-        btn.addEventListener('click', (e) => {
-            let index = parseInt(btn.dataset.index)
+        let nbtn = btn.cloneNode(true)
+        btn.parentNode.replaceChild(nbtn, btn)
+        nbtn.addEventListener('click', () => {
+            let index = parseInt(nbtn.dataset.index)
             console.log(index)
             totalBooks -= 1
             numTotal.textContent = `Total: ${totalBooks}`
@@ -125,19 +134,21 @@ function listenDelete() {
             } else {
                 readTotal -= 1
                 numRead.textContent = `Read: ${readTotal}`
-            } btn.parentElement.remove()
-            myLibrary.splice(index, 1)
-            console.log(myLibrary)
-            console.log(e.target)
-        })
+            } 
+            nbtn.parentElement.remove()
+            updateDataset(index)
+            deleteBooks(index, 1)
+        });
     })
 }
 
 function updateDataset(number) {
     let remove = document.querySelectorAll('.remove')
     remove.forEach( btn => {
+        console.log('this worked')
         if (parseInt(btn.dataset.index) > number) {
-            btn.dataset.index = toString(btn.dataset.index - 1)
+            let newValue = parseInt(btn.dataset.index) - 1
+            btn.dataset.index = newValue
             console.log(btn.dataset.index)
         }
     })

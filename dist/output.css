@@ -558,6 +558,10 @@ video {
   height: 100%;
 }
 
+.h-\[100vh\] {
+  height: 100vh;
+}
+
 .w-\[100\%\] {
   width: 100%;
 }
@@ -588,6 +592,14 @@ video {
 
 .grid-rows-\[1fr_10fr\] {
   grid-template-rows: 1fr 10fr;
+}
+
+.grid-rows-\[4fr_7fr_2fr\] {
+  grid-template-rows: 4fr 7fr 2fr;
+}
+
+.grid-rows-\[4fr_7fr_2fr_2fr\] {
+  grid-template-rows: 4fr 7fr 2fr 2fr;
 }
 
 .flex-col {
