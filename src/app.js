@@ -69,8 +69,8 @@ function addBookToBookshelf() { // this, when called, will add each book object 
     listenDelete()
 }
 
-function deleteBooks() { // this function deletes all books in the myLibrary array
-    myLibrary.splice(0, myLibrary.length)
+function deleteBooks(index, number) { // this function deletes all books in the myLibrary array
+    myLibrary.splice(index, number)
 }
 
 function removeChildNodes(parent) { // this removes all child nodes from a parent node
@@ -80,27 +80,30 @@ function removeChildNodes(parent) { // this removes all child nodes from a paren
 }
 
 function deleteButton() { // this is the function call to the corresponding delete all button you can see on the DOM
-    deleteBooks()
+    deleteBooks(0, myLibrary.length)
     removeChildNodes(bookshelf)
-    totalBooks = 0;readTotalBooks = 0, compTotal = 0
+    totalBooks = 0; readTotal = 0, compTotal = 0
     numTotal.textContent = `Total: ${totalBooks}`
-    numRead.textContent = `Reading: ${readTotalBooks}`
+    numRead.textContent = `Reading: ${readTotal}`
     numCompleted.textContent = `Completed: ${compTotal}`
 }
 
 function listenToggle() {
     let toggleButton = document.querySelectorAll('.toggle')
     toggleButton.forEach( btn => {
-        btn.addEventListener('click', () => {
-            let nextButton = btn.nextElementSibling;
-            btn.classList.toggle('unfinished')
-            btn.classList.toggle('finished')
+        let nbtn = btn.cloneNode(true)
+        btn.parentNode.replaceChild(nbtn, btn)
+        nbtn.addEventListener('click', () => {
+            let nextButton = nbtn.nextElementSibling;
+            console.log(nextButton)
+            nbtn.classList.toggle('unfinished')
+            nbtn.classList.toggle('finished')
             let index = parseInt(nextButton.dataset.index)
             if (myLibrary[index].readStatus) {
-                btn.textContent = `Unfinished`
+                nbtn.textContent = `Unfinished`
                 myLibrary[index].readStatus = false
             } else {
-                btn.textContent = `Finished`
+                nbtn.textContent = `Finished`
                 myLibrary[index].readStatus = true
             }
         })
@@ -112,8 +115,10 @@ function listenDelete() {
     remove.forEach( btn => {
         btn.addEventListener('click', (e) => {
             let index = parseInt(btn.dataset.index)
+            console.log(index)
             totalBooks -= 1
             numTotal.textContent = `Total: ${totalBooks}`
+            console.log(myLibrary[index].readStatus)
             if (myLibrary[index].readStatus) {
                 compTotal -= 1
                 numCompleted.textContent = `Completed: ${compTotal}`
@@ -123,7 +128,18 @@ function listenDelete() {
             } btn.parentElement.remove()
             myLibrary.splice(index, 1)
             console.log(myLibrary)
+            console.log(e.target)
         })
+    })
+}
+
+function updateDataset(number) {
+    let remove = document.querySelectorAll('.remove')
+    remove.forEach( btn => {
+        if (parseInt(btn.dataset.index) > number) {
+            btn.dataset.index = toString(btn.dataset.index - 1)
+            console.log(btn.dataset.index)
+        }
     })
 }
 
